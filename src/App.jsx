@@ -4,6 +4,8 @@ import Home from "./pages/Home";
 import Navbar from "./components/Navbar"; // Don't forget to import your Navbar!
 import Footer from "./components/Footer";
 import FriendDetails from "./pages/FriendDetails";
+import { ToastContainer } from "react-toastify";
+import Timeline from "./pages/Timeline";
 
 function App() {
   return (
@@ -14,11 +16,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route
             path="/timeline"
-            element={
-              <div className="pt-32 text-center text-2xl">
-                Timeline Page coming soon!
-              </div>
-            }
+            element={<Timeline />}
           />
           <Route
             path="/stats"
@@ -40,6 +38,19 @@ function App() {
         </Routes>
       </main>
       <Footer />
+
+      <ToastContainer 
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </>
   );
 }

@@ -1,19 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Loader from '../components/Loader';
 
 const FriendList = () => {
   const [friends, setFriends] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     fetch('/data/friends.json')
       .then((res) => res.json())
-      .then((data) => setFriends(data))
+      .then((data) => {
+        setFriends(data);
+        setIsLoading(false);
+      })
+      
       .catch((err) => console.error("Error loading friends:", err));
   }, []);
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-12">
       <h2 className="text-2xl font-bold text-slate-800 mb-8">Your Friends</h2>
+
+      {isLoading ? (
+        <Loader message="Gathering your circle..." />
+      ) : (
       
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
   {friends.map((friend) => (
@@ -54,6 +64,7 @@ const FriendList = () => {
     </Link>
   ))}
 </div>
+      )}
     </div>
   );
 };
