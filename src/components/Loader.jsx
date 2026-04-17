@@ -2,7 +2,7 @@ import React from 'react';
 
 const Loader = ({ message = "Loading..." }) => {
   return (
-    <div className="flex flex-col items-center justify-center py-20 min-h-[400px] w-full animate-in fade-in duration-500">
+    <div className="flex flex-col items-center justify-center py-20 min-h-100 w-full animate-in fade-in duration-500">
       {/* The Spinning Ring */}
       <div className="relative w-16 h-16">
         <div className="absolute inset-0 border-4 border-slate-100 rounded-full"></div>
