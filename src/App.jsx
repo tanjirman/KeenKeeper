@@ -6,6 +6,8 @@ import Footer from "./components/Footer";
 import FriendDetails from "./pages/FriendDetails";
 import { ToastContainer } from "react-toastify";
 import Timeline from "./pages/Timeline";
+import Stats from "./pages/Stats";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -14,32 +16,17 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route
-            path="/timeline"
-            element={<Timeline />}
-          />
-          <Route
-            path="/stats"
-            element={
-              <div className="pt-32 text-center text-2xl">
-                Stats Page coming soon!
-              </div>
-            }
-          />
+          <Route path="/timeline" element={<Timeline />} />
+          <Route path="/stats" element={<Stats />} />
 
           <Route path="/friend/:id" element={<FriendDetails />} />
 
-          <Route
-            path="*"
-            element={
-              <div className="pt-32 text-center">404 - Page Not Found</div>
-            }
-          />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <Footer />
 
-      <ToastContainer 
+      <ToastContainer
         position="top-center"
         autoClose={3000}
         hideProgressBar={false}
