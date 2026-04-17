@@ -1,16 +1,33 @@
-# React + Vite
+# KeenKeeper
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+KeenKeeper is a personal relationship management platform designed to help users maintain meaningful connections. It acts as your personal "shelf" for connections—allowing you to browse, tend, and nurture the relationships that matter most in an increasingly digital world.
 
-Currently, two official plugins are available:
+## 🛠 Technologies Used
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Frontend Framework:** React.js
+- **Styling:** Tailwind CSS
+- **Routing:** React Router
+- **Charts & Data Viz:** Recharts
+- **Icons:** Lucide React, React-icons
+- **State Management:** React Hooks (useState, useEffect)
+- **Data Persistence:** Session Storage & JSON
 
-## React Compiler
+- ## 🚀 Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![DaisyUI](https://img.shields.io/badge/DaisyUI-5A0EF8?style=for-the-badge&logo=daisyui&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/ef7266dc-ed7a-42b6-ace9-bb1fe6cd47d6/deploy-status)](https://app.netlify.com/projects/digitools-8e15db/deploys)
 
-## Expanding the ESLint configuration
+## 🚀 Key Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 1. Friendship Analytics (Stats Dashboard)
+A comprehensive dashboard featuring summary cards and a dynamic **Donut Chart** that visualizes your interaction patterns (Calls, Texts, and Videos). It provides real-time insights into which friends need attention and your overall connectivity trends.
+
+### 2. Smart Timeline & History
+A persistent interaction log that tracks every check-in. The timeline includes advanced **Filter** capabilities, allowing you to quickly find past interactions by friend name or communication type.
+
+### 3. Personal Connection Goals
+Set custom "Contact Frequency" goals for every individual in your circle. The app automatically calculates "Days Since Contact" and categorizes friends as **On Track**, **Almost Due**, or **Overdue**, making it easy to prioritize your social outreach.
+
