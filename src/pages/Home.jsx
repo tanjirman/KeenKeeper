@@ -6,7 +6,7 @@ import FriendList from '../components/FriendList';
 const Home = () => {
     return (
         <div>
-            <Navbar/>
+            {/* <Navbar/> */}
             <Banner/>
             <FriendList/>
         </div>
