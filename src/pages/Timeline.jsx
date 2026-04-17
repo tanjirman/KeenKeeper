@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Phone, MessageSquare, Video, Calendar, Trash2 } from 'lucide-react';
-import Loader from '../components/Loader'; // Import the new component
+import { Phone, MessageSquare, Video, Calendar, Trash2, Filter } from 'lucide-react';
+import Loader from '../components/Loader';
 
 const Timeline = () => {
   const [activities, setActivities] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [filter, setFilter] = useState('All'); // New state for filtering
 
   useEffect(() => {
-    // Simulate data fetching
     const timer = setTimeout(() => {
       try {
         const history = JSON.parse(sessionStorage.getItem('timeline_history') || '[]');
@@ -17,8 +17,7 @@ const Timeline = () => {
       } finally {
         setIsLoading(false);
       }
-    }, 800); // Smooth delay to show the loader
-
+    }, 800);
     return () => clearTimeout(timer);
   }, []);
 
@@ -29,28 +28,34 @@ const Timeline = () => {
     }
   };
 
+  // Logic to filter activities based on the selected button
+  const filteredActivities = activities.filter(item => 
+    filter === 'All' ? true : item.type === filter
+  );
+
   const getIcon = (type) => {
     const iconClass = "text-slate-600";
     switch (type) {
-      case 'Call': return <Phone size={20} className={iconClass} />;
-      case 'Text': return <MessageSquare size={20} className={iconClass} />;
-      case 'Video': return <Video size={20} className={iconClass} />;
-      default: return <Calendar size={20} className={iconClass} />;
+      case 'Call': return <Phone size={18} className={iconClass} />;
+      case 'Text': return <MessageSquare size={18} className={iconClass} />;
+      case 'Video': return <Video size={18} className={iconClass} />;
+      default: return <Calendar size={18} className={iconClass} />;
     }
   };
+
+//   const filterOptions = ['All', 'Call', 'Text', 'Video'];
 
   return (
     <div className="bg-[#f8fafb] min-h-screen pt-32 pb-20 px-6">
       <div className="max-w-4xl mx-auto">
         
         {/* Header Section */}
-        <div className="flex justify-between items-end mb-10">
+        <div className="flex justify-between items-end mb-8">
           <div>
             <h1 className="text-4xl font-bold text-slate-900 mb-2 tracking-tight">Timeline</h1>
             <p className="text-slate-400 text-sm font-medium">History of interactions for this session</p>
           </div>
           
-          {/* Only show clear button if not loading and data exists */}
           {!isLoading && activities.length > 0 && (
             <button 
               onClick={clearHistory}
@@ -61,22 +66,56 @@ const Timeline = () => {
           )}
         </div>
 
-        {/* Conditional Rendering: Loader vs List */}
+        {/* Filter Bar */}
+        {/* Dropdown Filter Bar */}
+{!isLoading && activities.length > 0 && (
+  <div className="flex justify-start mb-8">
+    <div className="relative group">
+      <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">
+        <Filter size={14} />
+      </div>
+      
+      <select
+        value={filter}
+        onChange={(e) => setFilter(e.target.value)}
+        className="appearance-none bg-white border border-slate-100 text-slate-600 text-xs font-bold uppercase tracking-widest py-3 pl-11 pr-10 rounded-2xl shadow-sm cursor-pointer outline-none focus:border-emerald-400 focus:ring-4 focus:ring-emerald-50 transition-all hover:border-slate-200"
+      >
+        <option value="All">All Interactions</option>
+        <option value="Call">Calls Only</option>
+        <option value="Text">Texts Only</option>
+        <option value="Video">Videos Only</option>
+      </select>
+
+      {/* Custom Chevron Down Icon */}
+      <div className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">
+        <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+)}
+
+        {/* List Logic */}
         {isLoading ? (
           <Loader message="Syncing History" />
-        ) : activities.length === 0 ? (
-          <div className="bg-white p-16 rounded-[2.5rem] border border-dashed border-slate-200 text-center animate-in fade-in duration-700">
+        ) : filteredActivities.length === 0 ? (
+          <div className="bg-white p-16 rounded-[2.5rem] border border-dashed border-slate-200 text-center animate-in fade-in">
             <div className="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mb-4 mx-auto">
-              <Calendar className="text-slate-300" />
+              {filter === 'All' ? <Calendar className="text-slate-300" /> : getIcon(filter)}
             </div>
-            <h3 className="text-slate-800 font-bold">No history logged</h3>
+            <h3 className="text-slate-800 font-bold">
+              {activities.length === 0 ? "No history logged" : `No ${filter}s found`}
+            </h3>
             <p className="text-slate-400 text-sm mt-1">
-              Interactions you log on profile pages will appear here.
+              {activities.length === 0 
+                ? "Interactions you log will appear here." 
+                : `You haven't logged any ${filter.toLowerCase()} interactions yet.`}
             </p>
           </div>
         ) : (
-          <div className="space-y-3 animate-in fade-in slide-in-from-bottom-4 duration-700">
-            {activities.map((item) => (
+          <div className="space-y-3 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            {filteredActivities.map((item) => (
               <div 
                 key={item.id} 
                 className="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm flex items-center justify-between hover:border-emerald-200 transition-all group"
@@ -97,10 +136,6 @@ const Timeline = () => {
                 <div className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.4)]"></div>
               </div>
             ))}
-            
-            <p className="text-center text-[10px] text-slate-300 mt-10 uppercase tracking-widest font-bold italic">
-              Session-only: This list clears when you close the tab.
-            </p>
           </div>
         )}
       </div>

@@ -14,7 +14,7 @@ const SummaryCards = ({ friends = [] }) => {
   ).length || 0;
   
  
-  const interactionsThisMonth = 12;
+  const interactionsThisMonth = 10;
 
   const stats = [
     { label: 'Total Friends', value: totalFriends },
@@ -24,7 +24,7 @@ const SummaryCards = ({ friends = [] }) => {
   ];
 
   return (
-    <div className="max-w-6xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16 mx-auto">
+    <div className="max-w-6xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6 mx-auto pb-15 border-b border-gray-100">
       {stats.map((stat, index) => (
         <div 
           key={index} 

@@ -5,11 +5,11 @@ import { Plus } from 'lucide-react'; // Fix: added "-react"
 const Banner = () => {
   return (
     <section className="pt-32 pb-16 px-6 text-center">
-      <div className="max-w-[60%] mx-auto">
+      <div className="max-w-[80%] md:max-w-[60%] mx-auto">
         <h1 className="text-3xl md:text-5xl font-extrabold text-slate-900 mb-6 leading-tight">
           Friends to keep close in your life
         </h1>
-        <p className="text-slate-500 text-lg md:text-xl mb-10 leading-relaxed max-w-[70%] mx-auto">
+        <p className="text-slate-500 text-lg md:text-xl mb-10 leading-relaxed max-w-[90%] md:max-w-[80%] mx-auto">
           Your personal shelf of meaningful connections. Browse, tend, and nurture the
 relationships that matter most.
         </p>

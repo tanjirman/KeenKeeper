@@ -105,7 +105,26 @@ const FriendDetails = () => {
               </div>
             </div>
 
-            <div className="bg-white p-10 rounded-[2.5rem] border border-slate-50 shadow-sm">
+
+
+{/* Relationship Goal Card - Strict Figma Match */}
+<div className="bg-white p-10 rounded-2xl border border-slate-50 shadow-sm mb-6">
+  <div className="flex justify-between items-start mb-4">
+    <h3 className="font-bold text-slate-800 text-lg">Relationship Goal</h3>
+    <button className="px-4 py-1.5 bg-slate-50 text-slate-500 text-[10px] font-bold uppercase tracking-widest rounded-lg border border-slate-100">
+      Edit
+    </button>
+  </div>
+
+  <div className="flex items-center gap-2">
+    <span className="text-sm text-slate-400 font-medium">Connect every</span>
+    <span className="text-sm font-bold text-slate-800">{friend.goal} days</span>
+  </div>
+</div>
+
+
+
+            <div className="bg-white p-10 rounded-2xl border border-slate-50 shadow-sm">
               <h3 className="font-bold text-slate-800 text-lg mb-8">Quick Check-In</h3>
               <div className="grid grid-cols-3 gap-6">
                 <button onClick={() => handleInteraction('Call')} className="flex flex-col items-center justify-center p-8 bg-[#fbfcfd] hover:bg-emerald-50 rounded-2xl transition-all group border border-transparent hover:border-emerald-100">

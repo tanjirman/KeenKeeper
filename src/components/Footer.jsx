@@ -9,7 +9,7 @@ const Footer = () => {
         
         <h2 className="text-4xl font-bold mb-4">KeenKeeper</h2>
         
-        <p className="text-gray-300 text-sm max-w-lg mb-8 leading-relaxed">
+        <p className="text-gray-300 text-sm max-w-[90%] mx-auto mb-8 leading-relaxed">
           Your personal shelf of meaningful connections. Browse, tend, and nurture the relationships that matter most.
         </p>
 
